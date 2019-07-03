@@ -36,6 +36,7 @@ import { LineNumberComponent } from './shared/line-number/line-number.component'
 import { SupplierNameComponent } from './shared/supplier-name/supplier-name.component';
 import { UserComponent } from './user/user.component';
 import { UserResolver } from './user/user.resolver';
+import { AgGridModule } from 'ag-grid-angular';
 
 // import { LineNumberComponent } from './shared/line-number/line-number.component';
 // import { SupplierNameComponent } from './shared/supplier-name/supplier-name.component';
@@ -84,7 +85,8 @@ import { UserResolver } from './user/user.resolver';
     MobxAngularModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
-    })
+    }),
+    AgGridModule.withComponents([])
   ],
 
   providers: [AuthService, UserService, UserResolver, AuthGuard, HttpService],

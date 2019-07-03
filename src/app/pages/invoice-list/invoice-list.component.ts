@@ -33,7 +33,17 @@ export class InvoiceListComponent implements OnInit {
   showMonthlyTextBox: boolean;
   minus_milk_value = '';
   extra_milk_value = '';
+  columnDefs = [
+    { headerName: 'Make', field: 'make' },
+    { headerName: 'Model', field: 'model' },
+    { headerName: 'Price', field: 'price' }
+  ];
 
+  rowData = [
+    { make: 'Toyota', model: 'Celica', price: 35000 },
+    { make: 'Ford', model: 'Mondeo', price: 32000 },
+    { make: 'Porsche', model: 'Boxter', price: 72000 }
+  ];
   constructor(
     private _http: HttpService,
     private _utils: UtilsService,
@@ -54,10 +64,21 @@ export class InvoiceListComponent implements OnInit {
     this.showMonthlyTextBox = localStorage.showMonthlyTextBox
       ? JSON.parse(localStorage.showMonthlyTextBox)
       : false;
-    this.displayedColumns = ['name', 'total', 'pay'];
-    if (this.showMonthlyTextBox) {
-      this.displayedColumns = ['name', 'total', 'extra', 'minus'];
-    }
+    // this.displayedColumns = ['name', 'total', 'pay'];
+    this.columnDefs = [
+      { headerName: 'name', field: 'name', sortable: true },
+      { headerName: 'total', field: 'total' },
+      { headerName: 'pay', field: 'pay' }
+    ];
+    // if (this.showMonthlyTextBox) {
+    //   // this.displayedColumns = ['name', 'total', 'extra', 'minus'];
+    //   this.columnDefs = [
+    //     { headerName: 'name', field: 'name' },
+    //     { headerName: 'total', field: 'total' },
+    //     { headerName: 'extra', field: 'extra' },
+    //     { headerName: 'minus', field: 'minus' }
+    //   ];
+    // }
   }
 
   applyFilter(filterValue: string) {
@@ -135,16 +156,21 @@ export class InvoiceListComponent implements OnInit {
         this.supplierName
       );
       if (this.supplierName === 'all' && this.lineNumber === 'all') {
-        this.dataSource.data = data;
+        // this.dataSource.data = data;
+        this.rowData = data;
       } else {
-        this.dataSource.data = this._invoiceService.getFilterData(
+        // this.dataSource.data = this._invoiceService.getFilterData(
+        //   this.supplierName,
+        //   this.lineNumber
+        // );
+        this.rowData = this._invoiceService.getFilterData(
           this.supplierName,
           this.lineNumber
         );
       }
-      this.currentInvoiceList = this.dataSource.data;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      // this.currentInvoiceList = this.dataSource.data;
+      // this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
       this.isLoading = false;
     });
   }
