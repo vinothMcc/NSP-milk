@@ -38,20 +38,7 @@ export class InvoiceListComponent implements OnInit {
     { headerName: 'Model', field: 'model' },
     {
       headerName: 'Price',
-      field: 'price',
-      valueGetter: function(params) {
-        console.log('====', params);
-        return params.data;
-      },
-      valueSetter: function(params) {
-        if (params.data.price !== params.newValue) {
-          console.log('====', params);
-          params.data.b = params.newValue;
-          return true;
-        } else {
-          return false;
-        }
-      }
+      field: 'price'
     }
   ];
 
