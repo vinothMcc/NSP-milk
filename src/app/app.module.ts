@@ -37,6 +37,7 @@ import { SupplierNameComponent } from './shared/supplier-name/supplier-name.comp
 import { UserComponent } from './user/user.component';
 import { UserResolver } from './user/user.resolver';
 import { AgGridModule } from 'ag-grid-angular';
+import { AgGridComponent } from './shared/ag-grid/ag-grid.component';
 
 // import { LineNumberComponent } from './shared/line-number/line-number.component';
 // import { SupplierNameComponent } from './shared/supplier-name/supplier-name.component';
@@ -57,7 +58,8 @@ import { AgGridModule } from 'ag-grid-angular';
     EditVoiceComponent,
     LineNumberComponent,
     SupplierNameComponent,
-    HeaderComponent
+    HeaderComponent,
+    AgGridComponent
   ],
   imports: [
     BrowserModule,

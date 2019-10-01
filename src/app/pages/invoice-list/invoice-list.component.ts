@@ -36,7 +36,23 @@ export class InvoiceListComponent implements OnInit {
   columnDefs = [
     { headerName: 'Make', field: 'make' },
     { headerName: 'Model', field: 'model' },
-    { headerName: 'Price', field: 'price' }
+    {
+      headerName: 'Price',
+      field: 'price',
+      valueGetter: function(params) {
+        console.log('====', params);
+        return params.data;
+      },
+      valueSetter: function(params) {
+        if (params.data.price !== params.newValue) {
+          console.log('====', params);
+          params.data.b = params.newValue;
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
   ];
 
   rowData = [
@@ -66,9 +82,9 @@ export class InvoiceListComponent implements OnInit {
       : false;
     // this.displayedColumns = ['name', 'total', 'pay'];
     this.columnDefs = [
-      { headerName: 'name', field: 'name', sortable: true },
-      { headerName: 'total', field: 'total' },
-      { headerName: 'pay', field: 'pay' }
+      { headerName: 'Name', field: 'name' },
+      { headerName: 'Amount', field: 'amount' },
+      { headerName: 'Supplier', field: 'supplier' }
     ];
     // if (this.showMonthlyTextBox) {
     //   // this.displayedColumns = ['name', 'total', 'extra', 'minus'];
@@ -141,6 +157,7 @@ export class InvoiceListComponent implements OnInit {
 
   getInvoice() {
     this.isLoading = true;
+    const that = this;
     this._invoiceService.getInvoiceList().subscribe(data => {
       this.supplierName = localStorage.supplierName
         ? JSON.parse(localStorage.supplierName)
@@ -157,16 +174,17 @@ export class InvoiceListComponent implements OnInit {
       );
       if (this.supplierName === 'all' && this.lineNumber === 'all') {
         // this.dataSource.data = data;
-        this.rowData = data;
+        that.rowData = data;
       } else {
         // this.dataSource.data = this._invoiceService.getFilterData(
         //   this.supplierName,
         //   this.lineNumber
         // );
-        this.rowData = this._invoiceService.getFilterData(
+        that.rowData = this._invoiceService.getFilterData(
           this.supplierName,
           this.lineNumber
         );
+        console.log(that.rowData);
       }
       // this.currentInvoiceList = this.dataSource.data;
       // this.dataSource.paginator = this.paginator;
@@ -198,4 +216,11 @@ export class InvoiceListComponent implements OnInit {
     }
     return this.showMonthlyTextBox;
   }
+
+  // convertDataToAgGridFormat(invoiceList) {
+  //   let agGridObject = {};
+  //   invoiceList.map((invoice)=>{
+
+  //   })
+  // }
 }

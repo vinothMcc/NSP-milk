@@ -73,87 +73,14 @@
         </mat-form-field>
       </div>
 
-      <ag-grid-angular
+      <!-- <ag-grid-angular
         style="width: 100%; height: 500px;"
         class="ag-theme-balham"
         [rowData]="rowData"
         [columnDefs]="columnDefs"
       >
-      </ag-grid-angular>
-
-      <!-- <div class="mat-elevation-z8 table-responsive mb-4">
-        <table mat-table [dataSource]="dataSource" matSort class="table-bordered">
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col">
-              Name
-            </th>
-            <td mat-cell class="name col pl-2" *matCellDef="let invoice" [routerLink]="['/edit-invoice', invoice._id]">
-              <u>{{ invoice.name }}</u>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="total">
-            <th mat-header-cell *matHeaderCellDef class="col text-center">
-              Total
-            </th>
-            <td mat-cell class="total col" *matCellDef="let invoice" style="color: rgba(22, 188, 218, 0.699);">
-              <p class="text-center" *ngIf="invoice.invoice">
-                {{
-                  invoice.invoice.payment
-                    ? invoice.invoice.payment[0].amount
-                    : 0
-                }}
-              </p>
-              <p class="text-center" *ngIf="!invoice.invoice">
-                -
-              </p>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="pay">
-            <th mat-header-cell *matHeaderCellDef class="col text-crenter">
-              Pay
-            </th>
-            <td mat-cell class="pay col" *matCellDef="let invoice">
-              <input type="number" #pay class="form-control form-control-sm" (keyup.enter)="
-                  updateAmount($event.target.value, invoice, 'invoice_amount');
-                  pay.value = ''
-                " />
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="extra">
-            <th mat-header-cell *matHeaderCellDef class="col text-crenter">
-              Extra
-            </th>
-            <td mat-cell class="pay col" *matCellDef="let invoice">
-              <input type="number" #extra class="extra_and_minus form-control form-control-sm" (keyup.enter)="
-                  updateAmount($event.target.value, invoice, 'extra_amount');
-                  extra.value = ''
-                " />
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="minus">
-            <th mat-header-cell *matHeaderCellDef class="col text-crenter">
-              Minus
-            </th>
-            <td mat-cell class="pay col" *matCellDef="let invoice">
-              <input type="number" #minus class="extra_and_minus form-control form-control-sm" (keyup.enter)="
-                  updateAmount($event.target.value, invoice, 'minus_amount');
-                  minus.value = ''
-                " />
-            </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-
-        <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
-          <h2>Loading...</h2>
-        </div>
-        <mat-paginator [pageSizeOptions]="[1000]"></mat-paginator>
-      </div> -->
+      </ag-grid-angular> -->
+      <app-ag-grid [rowData]="rowData" [columnDefs]="columnDefs"></app-ag-grid>
     </div>
   </div>
 </div>
