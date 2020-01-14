@@ -1,0 +1,71 @@
+.invoice-container {
+  .pay input {
+    width: 50px;
+    margin-left: 1rem;
+  }
+
+  .total p {
+    padding: 0 1rem;
+  }
+
+  .form-group {
+    &>p {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    mat-form-field {
+      padding: 0 !important;
+
+      .mat-form-field-infix {
+        border: none !important;
+      }
+    }
+
+    mat-form-field>.mat-form-field-wrapper>.mat-form-field-flex>.mat-form-field-infix {
+      border-top: none !important;
+    }
+  }
+}
+
+.pay>mat-form-field>.mat-form-field-wrapper>.mat-form-field-flex>.mat-form-field-infix {
+  width: 100px !important;
+}
+
+
+.invoice-table {
+  overflow: scroll;
+
+  th {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    padding: 0;
+  }
+
+  td {
+    color: #1c9cd6;
+  }
+
+  td.total p {
+    margin-bottom: 0;
+  }
+
+  td.pay {
+    padding: 0;
+
+    &>input {
+      width: 100px !important;
+      margin: 3px !important;
+      height: 35px !important;
+    }
+  }
+
+  td.name {
+    p {
+      width: 100px !important;
+      margin: auto;
+    }
+  }
+
+}
