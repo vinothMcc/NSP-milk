@@ -2,19 +2,17 @@
 <div class="row">
   <div class="col ">
     <div class="card">
-      <ul
-        class="list-group list-group-flush"
-        *ngFor="let supplier of Object.keys(statisticsData)"
-      >
+      <ul class="list-group list-group-flush" *ngFor="let supplier of statisticsData | keyvalue">
+        <li class="list-group-item text-center bg-primary font-weight-bold"> {{supplier.key | uppercase}} </li>
         <li class="list-group-item">
-          Total Card Amount : {{ statisticsData[supplier]["totalCardAmount"] }}
+          Total Card Amount : {{ statisticsData[supplier.key]["totalCardAmount"] }}
         </li>
         <li class="list-group-item">
-          Total Amount Pay : {{ statisticsData[supplier]["totalAmountPay"] }}
+          Total Amount Pay : {{ statisticsData[supplier.key]["totalAmountPay"] }}
         </li>
         <li class="list-group-item">
           Total Collected Amount :
-          {{ statisticsData[supplier]["totalcollectedAmount"] }}
+          {{ statisticsData[supplier.key]["totalcollectedAmount"] }}
         </li>
       </ul>
     </div>
