@@ -1,4 +1,4 @@
-<div class="invoice-container">
+<div class="invoice-container mt-2">
   <div class="row mb-2">
     <div class="col">
       <section class="example-section">
@@ -140,9 +140,8 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
 
-        <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
-          <h2>Loading...</h2>
-        </div>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+
         <mat-paginator [pageSizeOptions]="[1000]"></mat-paginator>
       </div>
     </div>

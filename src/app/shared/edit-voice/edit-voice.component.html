@@ -1,7 +1,8 @@
-<div class="container edit-container">
+<div class="container edit-container mt-2">
   <div class="row">
     <div class="col mb-3">
-      <button class="btn btn-primary" [routerLink]="['/home']"> Home </button>
+      <h4 *ngIf="isCreateCustomer">Create Customer</h4>
+      <h4 *ngIf="!isCreateCustomer">Edit Customer</h4>
     </div>
   </div>
   <form [formGroup]="editInvoiceForm" class="example-form row" novalidate>
@@ -67,20 +68,22 @@
     </div>
 
     <div class="container mb-3 mt-2">
-      <button class="btn btn-primary" [disabled]="editInvoiceForm.invalid" (click)="updateInvoice()">
+      <button *ngIf="isCreateCustomer" class="btn btn-primary" [disabled]="editInvoiceForm.invalid"
+        (click)="updateInvoice()">
+        Sumbit
+      </button>
+      <button *ngIf="!isCreateCustomer" class="btn btn-primary" [disabled]="editInvoiceForm.invalid"
+        (click)="updateInvoice()">
         Update
       </button>
     </div>
-    <div class="col">
+    <div class="col" *ngIf="!isCreateCustomer">
       <mat-accordion class="example-headers-align mb-2">
-        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle class="mb-1">
+        <mat-expansion-panel [expanded]="step === 0" class="mb-1">
           <mat-expansion-panel-header class="bg-secondary">
             <mat-panel-title class="text-white">
               <u> Invoice History </u>
             </mat-panel-title>
-            <!-- <mat-panel-description class="text-white float-right">
-              +
-            </mat-panel-description> -->
           </mat-expansion-panel-header>
 
           <ng-container *ngIf="
@@ -96,25 +99,15 @@
               </div>
             </ng-container>
           </ng-container>
-
-          <mat-action-row>
-            <button mat-button color="primary" (click)="nextStep()">
-              Next
-            </button>
-          </mat-action-row>
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle class="mb-1">
+        <mat-expansion-panel [expanded]="step === 1" class="mb-1">
           <mat-expansion-panel-header class="bg-success text-white">
             <mat-panel-title class="text-white">
               <u> Extra Milk History</u>
             </mat-panel-title>
-            <!-- <mat-panel-description>
-              Type the country name
-              <mat-icon>map</mat-icon>
-            </mat-panel-description> -->
           </mat-expansion-panel-header>
-          <ng-container *ngIf="invoiceData.extra_milk">
+          <ng-container *ngIf="invoiceData.extra_milk ; else noData;">
             <ng-container *ngFor="let extra of invoiceData.extra_milk | keyvalue">
               <ng-container *ngFor="let item of extra.value">
                 <div class="col-12 pt-1 pb-1">
@@ -127,18 +120,9 @@
               </ng-container>
             </ng-container>
           </ng-container>
-
-          <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()">
-              Previous
-            </button>
-            <button mat-button color="primary" (click)="nextStep()">
-              Next
-            </button>
-          </mat-action-row>
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle class=" mb-1">
+        <mat-expansion-panel [expanded]="step === 2" class=" mb-1">
           <mat-expansion-panel-header class="bg-warning text-white">
             <mat-panel-title class="text-white">
               <u> Minus Milk History</u>
@@ -148,7 +132,7 @@
               <mat-icon>date_range</mat-icon> -->
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <ng-container *ngIf="invoiceData.minus_milk">
+          <ng-container *ngIf="invoiceData.minus_milk; else noData;">
             <ng-container *ngFor="let minus of invoiceData.minus_milk | keyvalue">
               <ng-container *ngFor="let item of minus.value">
                 <div class="col-12 pt-1 pb-1">
@@ -161,14 +145,12 @@
               </ng-container>
             </ng-container>
           </ng-container>
-          <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()">
-              Previous
-            </button>
-            <button mat-button color="primary" (click)="nextStep()">End</button>
-          </mat-action-row>
+
         </mat-expansion-panel>
       </mat-accordion>
     </div>
+    <ng-template #noData>
+      <p>No Data Found</p>
+    </ng-template>
   </form>
 </div>

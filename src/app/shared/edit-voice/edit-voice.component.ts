@@ -21,24 +21,14 @@ export class EditVoiceComponent implements OnInit {
   lines = this._config.LINES;
   foods = [];
   step = 0;
+  isCreateCustomer = false;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private _invoiceService: InvoiceService,
     private _config: Constants,
     private _util: UtilsService
-  ) {
-    this.invoiceData = {
-      '30days_amount': '',
-      '31days_amount': '',
-      name: '',
-      supplier: '',
-      line: '',
-      order: '',
-      payment_type: '',
-      milk_count: ''
-    };
-  }
+  ) {}
 
   ngOnInit() {
     // grand_total	grand_total_text	paid_amount	due	extra	is_paid_status	comments
@@ -55,7 +45,9 @@ export class EditVoiceComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.invoiceId = params.id; // --> Name must match wanted parameter
+      // Create customer
       if (this.invoiceId === '0') {
+        this.isCreateCustomer = true;
         this.invoiceData = {
           '30days_amount': '',
           '31days_amount': '',
@@ -67,6 +59,8 @@ export class EditVoiceComponent implements OnInit {
           milk_count: ''
         };
       } else {
+        // Edit customer
+        this.isCreateCustomer = false;
         console.log('Imas');
         this._invoiceService
           .getInvoiceUsingId(this.invoiceId)

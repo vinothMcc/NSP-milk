@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatTabsModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatListModule, MatPaginatorModule, MatSortModule, MatTableModule, MatTabsModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -9,6 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -35,12 +36,14 @@ import { EditVoiceComponent } from './shared/edit-voice/edit-voice.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { LineNumberComponent } from './shared/line-number/line-number.component';
 import { ManualUpdateCustomerInvoiceComponent } from './shared/manual-update-customer-invoice/manual-update-customer-invoice.component';
+import { StatisticsComponent } from './shared/statistics/statistics.component';
 import { SupplierNameComponent } from './shared/supplier-name/supplier-name.component';
-import { TabComponent } from './shared/tab/tab.component';
 import { UserComponent } from './user/user.component';
 import { UserResolver } from './user/user.resolver';
-import { StatisticsComponent } from './shared/statistics/statistics.component';
 
+// mat imports
+
+// ----------------
 // imports angular
 // imports custom
 // import { LineNumberComponent } from './shared/line-number/line-number.component';
@@ -64,7 +67,6 @@ import { StatisticsComponent } from './shared/statistics/statistics.component';
     SupplierNameComponent,
     HeaderComponent,
     ManualUpdateCustomerInvoiceComponent,
-    TabComponent,
     StatisticsComponent
   ],
   entryComponents: [ManualUpdateCustomerInvoiceComponent],
@@ -94,6 +96,8 @@ import { StatisticsComponent } from './shared/statistics/statistics.component';
     MatDialogModule,
     MobxAngularModule,
     MatTabsModule,
+    MatSidenavModule,
+    MatListModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     })

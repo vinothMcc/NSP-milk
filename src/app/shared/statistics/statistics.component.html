@@ -1,5 +1,6 @@
 <h2 class="text-center">statistics</h2>
-<div class="row">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="row" *ngIf="!isLoading">
   <div class="col ">
     <div class="card">
       <ul class="list-group list-group-flush" *ngFor="let supplier of statisticsData | keyvalue">

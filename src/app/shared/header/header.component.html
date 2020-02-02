@@ -1,6 +1,26 @@
-<mat-toolbar class="fixed-header">
-  <mat-toolbar-row>
-    <div class="col text-center"><span class="text-primary"> NSP MILK </span></div>
-  </mat-toolbar-row>
+<div class="header" style="height: 80vh; ">
+  <mat-toolbar color="primary" class="fixed-header">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="text-center" style="width:80%;"><span>NSP Milk</span></div>
+      <span class="menu-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-</mat-toolbar>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <!-- <a (click)="sidenav.toggle()" mat-list-item>Close</a> -->
+        <a (click)="sidenav.toggle()" routerLink="/home" mat-list-item>Collection list</a>
+        <a (click)="sidenav.toggle()" routerLink="/statistics" mat-list-item>Statistics</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <div class="container content-body">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

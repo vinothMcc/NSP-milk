@@ -4,13 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class Constants {
-  BEURL = 'https://nsp-milk.herokuapp.com/api/';
-  CUSTOMER = 'customer';
-  CUSTOMERS = 'customers';
-  INVOICE = 'invoice/';
+  BEURL = 'https://nsp-milk.herokuapp.com';
+  CUSTOMER = '/api/customer';
+  CUSTOMERS = '/api/customers';
+  INVOICE = '/api/invoice/';
   UPDATEINVOICE = 'update_invoice';
-  UPDATEEXTRAANDMINUSAMOUNT = '/extra-and-minus-milk';
-  STATISTICS = 'statistics';
+  UPDATEEXTRAANDMINUSAMOUNT = '/api/extra-and-minus-milk';
+  STATISTICS = '/api/statistics';
   SUPPLIERS = [
     { value: 'suresh', viewValue: 'suresh' },
     { value: 'vinoth', viewValue: 'vinoth' },

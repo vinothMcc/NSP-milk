@@ -51,6 +51,15 @@ export class InvoiceListComponent implements OnInit {
     );
   }
   ngOnInit() {
+    this.supplierName = localStorage.supplierName
+      ? JSON.parse(localStorage.supplierName)
+      : 'all';
+    if (this.supplierName === 'all') {
+      this.disableLineNumber = true;
+    }
+    this.lineNumber = localStorage.lineNumber
+      ? JSON.parse(localStorage.lineNumber)
+      : 'all';
     this.getInvoice();
     this.showMonthlyTextBox = localStorage.showMonthlyTextBox
       ? JSON.parse(localStorage.showMonthlyTextBox)
@@ -134,15 +143,6 @@ export class InvoiceListComponent implements OnInit {
   getInvoice() {
     this.isLoading = true;
     this._invoiceService.getInvoiceList().subscribe(data => {
-      this.supplierName = localStorage.supplierName
-        ? JSON.parse(localStorage.supplierName)
-        : 'all';
-      if (this.supplierName === 'all') {
-        this.disableLineNumber = true;
-      }
-      this.lineNumber = localStorage.lineNumber
-        ? JSON.parse(localStorage.lineNumber)
-        : 'all';
       this.suppliers = this._invoiceService.supplierList(this.supplierName);
       this.lineNumberList = this._invoiceService.getLinesDependOnSupplier(
         this.supplierName

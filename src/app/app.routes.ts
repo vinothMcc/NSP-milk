@@ -5,6 +5,7 @@ import { AuthGuard } from './core/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EditVoiceComponent } from './shared/edit-voice/edit-voice.component';
+import { StatisticsComponent } from './shared/statistics/statistics.component';
 import { UserComponent } from './user/user.component';
 import { UserResolver } from './user/user.resolver';
 
@@ -15,5 +16,6 @@ export const rootRouterConfig: Routes = [
   { path: 'user', component: UserComponent, resolve: { data: UserResolver } },
   { path: 'invoice-list', component: InvoiceListComponent },
   { path: 'home', component: InvoiceListComponent },
-  { path: 'edit-invoice/:id', component: EditVoiceComponent }
+  { path: 'edit-invoice/:id', component: EditVoiceComponent },
+  { path: 'statistics', component: StatisticsComponent }
 ];
